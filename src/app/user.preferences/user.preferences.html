@@ -1,0 +1,51 @@
+<h4>Welcome to the User Preferences page</h4>
+<div>Questionnaire, coming soon...</div>
+
+<br>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="small-6 column small-offset-3 login-form">
+      <form name="userPreferencesForm" ng-submit="vm.saveUserPreferences()" novalidate>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small>Please select your preference(s) and click on the save button below</small>
+          </div>
+        </div>
+
+        <div class="row" ng-if="vm.userPreferences.length > 1">
+          <div class="small-10 column">
+            <input type="checkbox" id="allpreferences" name="checkbox" value="All" ng-checked="vm.selectedPreferences.length === vm.userPreferences.length" ng-click="vm.selectAllPreferences()"/>
+            <label for="allpreferences">All</label>
+          </div>
+        </div>
+
+        <div class="row" ng-repeat="preference in vm.userPreferences">
+          <div class="small-10 column">
+            <input type="checkbox" id="{{ preference.name }}" name="checkbox" value="{{ preference.name }}" ng-checked="vm.selectedPreferences.indexOf(preference.name) > -1" ng-click="vm.selectPreference(preference.name)" />
+            <label for="{{ preference.name }}">{{ preference.name }}</label>
+          </div>
+        </div>
+
+        <!--<pre>{{ vm.saveUserPreferences() | json }}</pre>-->
+        <pre>{{ vm.saveUserPreferences | json }}</pre>
+
+        <div class="row">
+          <div class="small-6 column">
+            <input type="submit" name="loginButton" class="button" value="Save Preferences">
+          </div>
+        </div>
+
+        <div class="row error-message">
+          <div class="small-12 column">
+            <small ng-if="userPreferencesForm.$invalid">Please enter a valid Password</small>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+

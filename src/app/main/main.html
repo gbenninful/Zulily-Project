@@ -1,0 +1,19 @@
+<div class="container">
+
+  <p>Something New Everyday</p>
+
+  <div class="container">
+    <div class="row" ng-if="vm.isLoggedIn">
+      <div class="small-12 column">All Logged IN users</div>
+    </div>
+
+    <div class="row" ng-if="!vm.isLoggedIn">
+      <div class="small-12 column">All Logged OUT users</div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 column">All USERS regardless of Login status</div>
+    </div>
+  </div>
+
+</div>

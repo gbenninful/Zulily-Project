@@ -1,0 +1,81 @@
+<br>
+<br>
+<p3>Sign Up Form</p3>
+<div class="container">
+  <div class="row">
+    <div class="small-6 column small-offset-3 login-form">
+      <form name="signUpForm" ng-submit="vm.signUpUser()" novalidate>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small><label for="name" class="left"> Your Name </label></small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <input type="text" id="name" name="name" placeholder="Name" ng-model="vm.user.name"
+                   ng-required="vm.required">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small><label for="email" class="left"> Email </label></small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <input type="email" id="email" name="email" placeholder="Email" ng-model="vm.user.email"
+                   ng-required="vm.required">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 column">
+            <span><label for="password" class="left"> Password </label></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <input type="password" id="password" placeholder="Password" ng-model="vm.user.password"
+                   ng-required="vm.required">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 column">
+            <span><label for="corfirm-password" class="left"> Confirm Password </label></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <input type="password" id="corfirm-password" placeholder="Confirm Password" ng-model="vm.user.confirmPassword"
+                   ng-required="vm.required">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-6 column">
+            <input type="submit" name="signupButton" class="button" value="Create Account">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-6 column">
+            <small><a ui-sref="login" ng-if="!vm.isLoggedIn">Already have an account? Login</a></small>
+          </div>
+          <div class="small-6 column">
+            <small><a ui-sref="resetpassword">Forgot password? Reset</a></small>
+          </div>
+        </div>
+        <div class="row error-message">
+          <div class="small-12 column">
+            <small ng-if="signUpForm.$invalid">Please enter valid login credentials</small>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
