@@ -16,7 +16,7 @@
 
           if (vm.isLoggedIn) {
             $log.info('Successfully Logged in...');
-            $state.go('home');
+            $state.go('app.home');
           } else {
             $log.error('Your credentials are invalid. Please try again...');
           }

@@ -21,19 +21,23 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController($firebaseAuth, $log) {
+    function NavbarController($firebaseAuth, $location, $log) {
       var vm = this;
       var auth = $firebaseAuth();
 
       auth.$onAuthStateChanged(function(firebaseUser) {
         if (firebaseUser) {
-          //$log.log("Signed in as...:", firebaseUser.uid);
           vm.isLoggedIn = true;
         } else {
           $log.error("Signed out");
           vm.isLoggedIn = false;
         }
       });
+
+      vm.isActive = function isActive (path) {
+        return ($location.path() === path) ? 'active' : '';
+      };
+
     }
   }
 

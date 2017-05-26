@@ -3,12 +3,10 @@
 
   angular
     .module('zulily')
-    .factory('FirebaseDataService', firebaseDataService)
+    .factory('CatalogService', CatalogService)
 
   /** @ngInject */
-  function firebaseDataService (
-    $firebaseArray
-  ) {
+  function CatalogService ($firebaseArray) {
 
     var userPreferencesRef = firebase.database().ref().child('USER_PREFERENCES');
 
@@ -20,7 +18,6 @@
     function getUserPreferences() {
       return $firebaseArray(userPreferencesRef);
     }
-
   }
 
 })();
