@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <div class="small-6 column small-offset-3 login-form">
+      <form name="catalogForm" ng-submit="vm.saveCatalogItem()" novalidate>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small><label for="name" class="left"> Name </label></small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <input type="text" id="name" name="name" placeholder="Product Name" ng-model="vm.product.name">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small><label for="category" class="left"> Category </label></small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <select name="category" id="category" ng-model="vm.product.category" ng-options="category.name for category in vm.categories"></select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small><label for="price" class="left"> Price </label></small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <span style="display: inline-block; padding-right: 5px;">&dollar;</span><input style="width: 97%; display: inline;" type="number" id="price" min="0.01" step="0.01" name="price" placeholder="Price" ng-model="vm.product.price">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small><label for="caption" class="left"> Caption </label></small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <input type="text" id="caption" name="caption" placeholder="Caption" ng-model="vm.product.caption">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small><label for="image-url" class="left"> Image URL </label></small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <input type="url" id="image-url" name="image-url" placeholder="Image url" ng-model="vm.product.imageUrl">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small><label for="sku" class="left"> SKU </label></small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <input type="text" id="sku" name="sku" placeholder="Stock Keeping Unit" ng-model="vm.product.sku">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-6 column">
+            <input type="submit" name="catalogButton" class="button" value="Add to Catalog">
+          </div>
+        </div>
+
+        <div class="row error-message">
+          <div class="small-12 column">
+            <small ng-if="catalogForm.$invalid">Please enter valid values</small>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

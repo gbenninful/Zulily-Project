@@ -8,6 +8,7 @@
   /** @ngInject */
   function ResetPasswordController ($log, $state, FirebaseAuthService) {
     var vm = this;
+    vm.isLoggedIn = !!(FirebaseAuthService.getAuth());
 
     vm.sendPasswordResetEmail = function sendPasswordResetEmail () {
       return FirebaseAuthService.sendPasswordResetEmail(vm.user.email)

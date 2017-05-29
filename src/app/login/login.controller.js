@@ -1,5 +1,5 @@
 (function () {
-  'use strict'
+  'use strict';
 
   angular
     .module('zulily')
@@ -8,28 +8,21 @@
   /** @ngInject */
   function LoginController ($log, $state, FirebaseAuthService) {
     var vm = this;
-    //vm.loggedIn = false;
     vm.loginUser = function loginUser () {
-       return FirebaseAuthService.loginUser(vm.user.email, vm.user.password)
-        .then(function () {
-          vm.isLoggedIn = FirebaseAuthService.getAuth();
+       return FirebaseAuthService.loginUser(vm.user.email, vm.user.password).then(function () {
+          vm.isLoggedIn = FirebaseAuthService.isUserLoggedIn();
 
-          if (vm.isLoggedIn) {
-            $log.info('Successfully Logged in...');
+          if (vm.isLoggedIn)  {
             $state.go('app.home');
           } else {
-            $log.error('Your credentials are invalid. Please try again...');
+            $log.error('There was an error logging in. Please try again...');
           }
         })
         .catch(function (error) {
-          vm.isLoggedIn = FirebaseAuthService.getAuth();
+          vm.isLoggedIn = FirebaseAuthService.isUserLoggedIn();
           $log.log('Sorry, login failed...', error);
         });
     }
-
-    vm.sendPasswordResetEmail = function sendPasswordResetEmail () {
-
-    }
   }
 
-})()
+})();

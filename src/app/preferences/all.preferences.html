@@ -1,0 +1,36 @@
+<br>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="small-6 column small-offset-3 login-form">
+      <form name="addNewPreferencesForm" ng-submit="vm.addNewPreferences()" novalidate>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small><label for="preferences" class="left"> Add New Preference: </label></small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-10 column">
+            <input type="text" id="preferences" name="preferences" placeholder="Add New Preference" ng-model="vm.newPreference">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-6 column">
+            <input type="submit" name="saveNewPreferencesButton" class="button" value="Save New Preferences">
+          </div>
+        </div>
+
+        <div class="row error-message">
+          <div class="small-12 column">
+            <small ng-if="addNewPreferencesForm.$invalid">The text you entered is invalid</small>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+

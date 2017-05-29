@@ -24,6 +24,11 @@
     function NavbarController($firebaseAuth, $location, $log) {
       var vm = this;
       var auth = $firebaseAuth();
+      vm.company = {
+        name: 'Zulily',
+        logo: 'https://a248.e.akamai.net/media.zulily.com/images/new-nav/zulily_logo_no_tagline.png',
+        mantra: 'Something Special Every Day'
+    }
 
       auth.$onAuthStateChanged(function(firebaseUser) {
         if (firebaseUser) {

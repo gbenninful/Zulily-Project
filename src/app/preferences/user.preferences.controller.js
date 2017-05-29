@@ -6,16 +6,15 @@
     .controller('UserPreferencesController', UserPreferencesController)
 
   /** @ngInject */
-  function UserPreferencesController ($log, $state, currentUser, FirebaseAuthService, FirebaseDataService) {
+  function UserPreferencesController ($log, $state, FirebaseAuthService, FirebaseDataService) {
     var vm = this;
-    vm.isLoggedIn = FirebaseAuthService.getAuth();
-    $log.info('UserPreferencesController-Checking currentUser: ', currentUser);
+    vm.isLoggedIn = FirebaseAuthService.isUserLoggedIn();
 
     if (vm.isLoggedIn) {
       var userPreferences = {
         formCompleted: false
       }
-      vm.preferences  = FirebaseDataService.getUserPreferences()
+      vm.preferences  =  FirebaseDataService.getUserPreferences();
 
       vm.userPreferences = [
         {name: 'Baby & Maternity', value: 'true'},
@@ -26,14 +25,14 @@
         {name: 'Women', value: 'true'}
       ];
 
-      vm.selectedPreferences = []
+      vm.selectedPreferences = [];
       vm.selectPreference = function (preference) {
-        var selectedIndex = vm.selectedPreferences.indexOf(preference)
+        var selectedIndex = vm.selectedPreferences.indexOf(preference);
 
         if (selectedIndex > -1) {
-          vm.selectedPreferences.splice(selectedIndex, 1)
+          vm.selectedPreferences.splice(selectedIndex, 1);
         } else {
-          vm.selectedPreferences.push(preference)
+          vm.selectedPreferences.push(preference);
         }
       }
 
@@ -41,19 +40,21 @@
         if (vm.userPreferences.length === vm.selectedPreferences.length) {
 
           vm.userPreferences.forEach(function (item) {
-            item.isChecked = false
+            item.isChecked = false;
           })
-          vm.selectedPreferences = []
+          vm.selectedPreferences = [];
 
         } else {
-          vm.selectedPreferences = []
+          vm.selectedPreferences = [];
           vm.userPreferences.forEach(function (item) {
-            item.isChecked = true
-
-            vm.selectedPreferences.push(item.name)
+            item.isChecked = true;
+            vm.selectedPreferences.push(item.name);
           })
         }
       }
+
+      //TODO: Refactor- vm.saveUserPreferences should only save userPreferences.
+      //TODO: It shouldn't format vm.selectedPreferences array into a userPreferences object
 
       //var formatObjToArray = function formatObjToArray () {
       //   var userPreferences = {};
@@ -84,7 +85,7 @@
 
         }
         $log.log('userPreferences: ', userPreferences)
-        $state.go('home')
+        $state.go('app.home')
       }
 
     } else {

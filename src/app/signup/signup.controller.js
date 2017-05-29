@@ -14,13 +14,12 @@
       password: ''
      };
 
-    vm.isLoggedIn = FirebaseAuthService.getAuth();
+    vm.isLoggedIn = FirebaseAuthService.isUserLoggedIn();
     vm.signUpUser = function () {
       return FirebaseAuthService.createUserWithEmailAndPassword(vm.user.email, vm.user.password)
         .then(function (firebaseUser) {
           if (firebaseUser) {
-            $log.info('Sign up new user succeeded. Yay!!!');
-            $state.go('home');
+            $state.go('app.userPreferences');
           } else {
             $log.error('Error. Unable to sign up new user');
           }
@@ -31,4 +30,4 @@
     };
 
   }
-})()
+})();

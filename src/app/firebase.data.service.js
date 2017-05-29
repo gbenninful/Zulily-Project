@@ -6,19 +6,24 @@
     .factory('FirebaseDataService', firebaseDataService)
 
   /** @ngInject */
-  function firebaseDataService (
-    $firebaseArray
-  ) {
+  function firebaseDataService ($firebaseArray) {
 
-    var userPreferencesRef = firebase.database().ref().child('USER_PREFERENCES');
+    var rootRef = firebase.database().ref();
+    var userPreferencesRef = rootRef.child('USER_PREFERENCES');
+    var catalogRef = rootRef.child('CATALOG');
 
     return {
+      getCatalog: getCatalog,
       getUserPreferences: getUserPreferences
     }
 
 
     function getUserPreferences() {
       return $firebaseArray(userPreferencesRef);
+    }
+
+    function getCatalog() {
+      return $firebaseArray(catalogRef);
     }
 
   }

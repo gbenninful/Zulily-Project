@@ -6,13 +6,9 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($log, /*FirebaseAuthService, */currentUser) {
+  function MainController(catalog) {
     var vm = this;
-
-    //vm.isLoggedIn = FirebaseAuthService.getAuth();
-    vm.isLoggedIn = currentUser;
-    $log.info('vm.isLoggedIn...: ', vm.isLoggedIn);
-    $log.info('currentUser: ', currentUser);
+    vm.catalog = catalog;
   }
 
 })();

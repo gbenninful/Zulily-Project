@@ -1,7 +1,8 @@
 <div class="top-bar">
   <ul class="top-bar-title menu">
     <li class="name">
-      <h1><a ui-sref="app.home">Zulily</a></h1>
+      <!--<h1><a ui-sref="app.home">Zulily</a></h1>-->
+      <div><a ui-sref="app.home"><img ng-src="{{ vm.company.logo }}" alt="Zulily Logo"></a></div>
     </li>
   </ul>
 
@@ -10,7 +11,9 @@
       <li ng-class="vm.isActive('/login')" ng-if="!vm.isLoggedIn"><a ui-sref="login">Login</a></li>
       <li ng-class="vm.isActive('/logout')" ng-if="vm.isLoggedIn"><a ui-sref="logout">Logout</a></li>
       <li ng-class="vm.isActive('/signup')"><a ui-sref="signUp">Sign up</a></li>
-      <li ng-class="vm.isActive('/userpreferences')"><a ui-sref="app.userPreferences">Preferences</a></li>
+      <li ng-class="vm.isActive('/catalog')"><a ui-sref="app.catalog">Catalog</a></li>
+      <li ng-class="vm.isActive('/userpreferences')"><a ui-sref="app.userPreferences">User Preferences</a></li>
+      <li ng-class="vm.isActive('/allpreferences')"><a ui-sref="app.allPreferences">All Preferences</a></li>
     </ul>
   </section>
 </div>

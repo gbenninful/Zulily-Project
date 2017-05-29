@@ -6,19 +6,20 @@
     .controller('LogoutController', LogoutController);
 
   /** @ngInject */
-  function LogoutController ($log, $state, FirebaseAuthService) {
-    $log.info('Inside LogoutController...');
+  function LogoutController ($log, FirebaseAuthService) {
     var vm = this;
-    vm.isLoggedIn = FirebaseAuthService.getAuth();
-    $log.info('vm.isLoggedIn Before: ', vm.isLoggedIn);
-    vm.logoutUser = function logoutUser ()  {
-      $log.log('Inside logoutUser');
-      FirebaseAuthService.logoutUser()
-        .then(function () {
-          vm.isLoggedIn = FirebaseAuthService.getAuth();
-          $log.info('vm.isLoggedIn After: ', vm.isLoggedIn);
-        });
+    vm.isLoggedIn = FirebaseAuthService.isUserLoggedIn();
+    vm.logoutUser = function logoutUser () {
+      if (vm.isLoggedIn) {
+        FirebaseAuthService.logoutUser().then(function () {
+          vm.isLoggedIn = FirebaseAuthService.isUserLoggedIn();
+          $log.info('vm.isLoggedIn: ', vm.isLoggedIn);
+        })
+          .catch(function (error) {
+            $log.error('Error, unable to logout, ', error);
+          })
+      }
     }
   }
 
-})();
+})()

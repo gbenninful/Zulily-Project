@@ -12,9 +12,10 @@
     return {
       authStateChanged: authStateChanged,
       createUserWithEmailAndPassword: createUserWithEmailAndPassword,
+      isUserLoggedIn: isUserLoggedIn,
       loginUser: loginUser,
       logoutUser: logoutUser,
-      getAuth: getAuth,
+      getAuthenticationStateInfo: getAuthenticationStateInfo,
       sendPasswordResetEmail: sendPasswordResetEmail
     }
 
@@ -35,8 +36,13 @@
     }
 
 
-    function getAuth () {
+    function getAuthenticationStateInfo () {
       return auth.$getAuth();
+    }
+
+
+    function isUserLoggedIn () {
+      return !!(auth.$getAuth());
     }
 
 
@@ -60,7 +66,7 @@
       return auth.$sendPasswordResetEmail(email).then(function() {
         $log.log("Password reset email sent successfully! Please check your email");
       }).catch(function(error) {
-        $log.error("Error: ", error);
+        $log.error("Unable to send password reset email: ", error);
       });
     }
   }
