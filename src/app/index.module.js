@@ -3,16 +3,17 @@
 
   angular
     .module('zulily', [
-      'ngAnimate',
-      'ngCookies',
-      'ngTouch',
-      'ngSanitize',
-      'ngMessages',
-      'ngAria',
-      'ngResource',
-      'ui.router',
-      'mm.foundation',
       'firebase',
-      'toastr']);
+      'mm.foundation',
+      'ngAnimate',
+      'ngAria',
+      'ngCookies',
+      'ngMessages',
+      'ngResource',
+      'ngSanitize',
+      'ngTouch',
+      'toastr',
+      'ui.router'
+]);
 
 })();

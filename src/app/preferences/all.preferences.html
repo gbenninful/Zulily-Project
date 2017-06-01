@@ -3,7 +3,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="small-6 column small-offset-3 login-form">
+    <div class="small-6 column allPreferences-form">
       <form name="addNewPreferencesForm" ng-submit="vm.addNewPreferences()" novalidate>
 
         <div class="row">
@@ -13,7 +13,7 @@
         </div>
         <div class="row">
           <div class="small-10 column">
-            <input type="text" id="preferences" name="preferences" placeholder="Add New Preference" ng-model="vm.newPreference">
+            <input type="text" id="preferences" name="preferences" placeholder="Add New Preference" ng-model="vm.preferences">
           </div>
         </div>
 
@@ -30,6 +30,10 @@
         </div>
 
       </form>
+    </div>
+    <div class="small-5 small-offset-1 column all-preferences">
+      <h5>List of All Preferences</h5>
+      <p ng-repeat="preference in vm.allPreferences">{{ preference.name }}</p>
     </div>
   </div>
 </div>

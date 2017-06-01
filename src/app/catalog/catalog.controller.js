@@ -6,18 +6,19 @@
     .controller('CatalogController', CatalogController);
 
   /** @ngInject */
-  function CatalogController($log, catalog) {
+  function CatalogController($log, catalog, allPreferences) {
     var vm = this;
     vm.catalog = catalog;
+    vm.categories = allPreferences;
 
-    vm.categories = [
+    /*vm.categories = [
       {name: 'Baby & Maternity', value: 'true'},
       {name: 'Boys', value: 'true'},
       {name: 'Girls', value: 'true'},
       {name: 'Home', value: 'true'},
       {name: 'Men', value: 'true'},
       {name: 'Women', value: 'true'}
-    ];
+    ];*/
 
     vm.saveCatalogItem = function saveCatalogItem () {
       if (vm.product) {

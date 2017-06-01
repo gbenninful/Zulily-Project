@@ -34,6 +34,7 @@
       controller: 'CatalogController',
       controllerAs: 'vm',
       resolve: {
+        allPreferences: getAllPreferences,
         catalog: getCatalog
       }
     },
@@ -55,7 +56,8 @@
       controller: 'AllPreferencesController',
       controllerAs: 'vm',
       resolve: {
-        currentUser: getCurrentUser
+        currentUser: getCurrentUser,
+        allPreferences: getAllPreferences
       }
     },
     {
@@ -116,4 +118,7 @@
     return FirebaseDataService.getCatalog();
   }
 
+  function getAllPreferences (FirebaseDataService) {
+    return FirebaseDataService.getAllPreferences().$loaded();
+  }
 })();
