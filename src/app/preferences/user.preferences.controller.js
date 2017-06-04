@@ -6,7 +6,7 @@
     .controller('UserPreferencesController', UserPreferencesController)
 
   /** @ngInject */
-  function UserPreferencesController ($log, $state, FirebaseAuthService, FirebaseDataService) {
+  function UserPreferencesController ($log, $state, allPreferences, FirebaseAuthService, FirebaseDataService) {
     var vm = this;
     vm.isLoggedIn = FirebaseAuthService.isUserLoggedIn();
 
@@ -14,16 +14,12 @@
       var userPreferences = {
         formCompleted: false
       }
-      vm.preferences  =  FirebaseDataService.getUserPreferences();
+      FirebaseDataService.getUserPreferences().$loaded().then(function(response) { //TODO: Remove this chunk. Not needed.
+        vm.preferences = response;
+        //$log.info('vm.preferences: ', vm.preferences ,_.isEmpty(vm.preferences));
+      });
 
-      vm.userPreferences = [
-        {name: 'Baby & Maternity', value: 'true'},
-        {name: 'Boys', value: 'true'},
-        {name: 'Girls', value: 'true'},
-        {name: 'Home', value: 'true'},
-        {name: 'Men', value: 'true'},
-        {name: 'Women', value: 'true'}
-      ];
+      vm.userPreferences = allPreferences;
 
       vm.selectedPreferences = [];
       vm.selectPreference = function (preference) {
@@ -74,24 +70,22 @@
         if (vm.selectedPreferences.length > 0) {
           vm.selectedPreferences.forEach(function (item) {
             if (!userPreferences[item]) {
-              userPreferences[item] = true
+              userPreferences[item] = true;
             }
-          })
+          });
 
           if (userPreferences) {
-            userPreferences.formCompleted = true
-            vm.preferences.$add(userPreferences)
+            userPreferences.formCompleted = true;
+            vm.preferences.$add(userPreferences);
           }
-
         }
-        $log.log('userPreferences: ', userPreferences)
-        $state.go('app.home')
+        $log.log('userPreferences: ', userPreferences);
+        $state.go('app.home');
       }
 
     } else {
-      $log.log('Please log in to select your preferences')
+      $log.log('Please log in to select your preferences');
     }
-
   }
 
 })()

@@ -17,7 +17,7 @@
     _.each(vm.allPreferences, function (preference) {
         preferenceList.push(preference.name);
     });
-    $log.info('PreferenceList...: ', preferenceList);
+    //$log.info('PreferenceList...: ', preferenceList);
 
     vm.addNewPreferences = function addNewPreferences() {
       if (_.isString(vm.preferences) && !_.isEmpty(vm.preferences)) {
@@ -50,7 +50,7 @@
                 $log.error('Unable to add new preferences');
               });
           } else {
-            $log.error('Sorry, no duplicates allowed', vm.preferences , 'already exist');
+            $log.error('Sorry, no duplicates allowed ', vm.preferences , ' already exist');
           }
           vm.preferences = '';
         }

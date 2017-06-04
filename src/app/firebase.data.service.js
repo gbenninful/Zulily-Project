@@ -12,9 +12,11 @@
     var userPreferencesRef = rootRef.child('USER_PREFERENCES');
     var catalogRef = rootRef.child('CATALOG');
     var allPreferencesRef = rootRef.child('ALL_PREFERENCES');
+    var allUsers = rootRef.child('USERS');
 
     return {
       getAllPreferences: getAllPreferences,
+      getAllUsers: getAllUsers,
       getCatalog: getCatalog,
       getUserPreferences: getUserPreferences
     }
@@ -32,6 +34,9 @@
       return $firebaseArray(allPreferencesRef);
     }
 
+    function getAllUsers () {
+      return $firebaseArray(allUsers);
+    }
   }
 
 })();

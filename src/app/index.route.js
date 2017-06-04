@@ -41,12 +41,13 @@
     {
       name: 'app.home',
       url: '^/home',
-      templateUrl: 'app/main/main.html',
-      controller: 'MainController',
+      templateUrl: 'app/home/home.html',
+      controller: 'HomeController',
       controllerAs: 'vm',
       resolve: {
         currentUser: getCurrentUser,
-        catalog: getCatalog
+        catalog: getCatalog,
+        userPreferencesCompleted: isUserPreferencesCompleted
       }
     },
     {
@@ -61,33 +62,45 @@
       }
     },
     {
+      name: 'app.settings',
+      url: '^/settings',
+      templateUrl: 'app/settings/settings.html',
+      controller: 'SettingsController',
+      controllerAs: 'vm'
+    },
+    {
       name: 'app.userPreferences',
       url: '^/userpreferences',
       templateUrl: 'app/preferences/user.preferences.html',
       controller: 'UserPreferencesController',
       controllerAs: 'vm',
       resolve: {
-        currentUser: getCurrentUser
+        currentUser: getCurrentUser,
+        allPreferences: getAllPreferences
       }
     },
     {
       name: 'login',
       url: '/login',
-      templateUrl: 'app/login/login.html',
+      templateUrl: 'app/authentication/login.html',
       controller: 'LoginController',
-      controllerAs: 'vm'
+      controllerAs: 'vm'/*,
+      resolve: {
+        allUsers: getAllUsers
+      }*/
+
     },
     {
       name: 'logout',
       url: '/logout',
-      templateUrl: 'app/login/logout.html',
+      templateUrl: 'app/authentication/logout.html',
       controller: 'LogoutController',
       controllerAs: 'vm'
     },
     {
       name: 'resetPassword',
       url: '/resetpassword',
-      templateUrl: 'app/login/password.reset.html',
+      templateUrl: 'app/authentication/password.reset.html',
       controller: 'ResetPasswordController',
       controllerAs: 'vm'
     },
@@ -105,20 +118,44 @@
     if (firebaseUser) {
       return firebaseUser;
     } else {
-      $log.warn('You are not logged in. Navigating back to the login page');
+      $log.warn('You are not logged in. Navigating back to the authentication page');
       $state.go('login');
     }
+  }
+
+  function isUserPreferencesCompleted ($state, FirebaseDataService) {
+   FirebaseDataService.getUserPreferences().$loaded().then(function (response) {
+     if(_.isEmpty(response)) {
+       $state.go('app.userPreferences');
+     } else {
+       $state.go('app.home');
+     }
+   });
+  }
+
+  function getAllPreferences (FirebaseDataService) {
+    return FirebaseDataService.getAllPreferences().$loaded();
+  }
+
+  /*function getAllUsers ($log, FirebaseDataService) {
+    FirebaseDataService.getAllUsers().$loaded().then(function (response) {
+      $log.log('All USERS...: ', response);
+      return response;
+    }).catch(function (error) {
+      $log.error('Unable to get all users... ',  error);
+    });
+  }*/
+
+  function getCatalog (FirebaseDataService) {
+    return FirebaseDataService.getCatalog().$loaded();
   }
 
   function getCurrentUser (resolvedUser) {
     return resolvedUser;
   }
 
-  function getCatalog (FirebaseDataService) {
-    return FirebaseDataService.getCatalog();
-  }
+  /*function getUserPreferences (FirebaseDataService) {
+    return FirebaseDataService.getUserPreferences().$loaded();
+  }*/
 
-  function getAllPreferences (FirebaseDataService) {
-    return FirebaseDataService.getAllPreferences().$loaded();
-  }
 })();

@@ -3,12 +3,14 @@
 
   angular
     .module('zulily')
-    .controller('MainController', MainController);
+    .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function MainController(catalog) {
+  function HomeController(catalog/*, userPreferences*/) {
     var vm = this;
     vm.catalog = catalog;
+
+
   }
 
 })();

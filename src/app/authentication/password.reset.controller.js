@@ -14,7 +14,7 @@
       return FirebaseAuthService.sendPasswordResetEmail(vm.user.email)
         .then(function () {
           $log.log('Please reset your password asap...: ');
-          $state.go('login');
+          $state.go('authentication');
         })
         .catch(function () {
           $log.error('Unable to reset your password. Please retype your password...');

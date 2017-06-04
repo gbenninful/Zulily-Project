@@ -7,7 +7,9 @@
   },
   "globals": {
     "angular": true,
+    "firebase": true,
+    "inject": true,
     "module": true,
-    "inject": true
+    "_": true
   }
 }
