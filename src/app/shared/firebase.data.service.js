@@ -11,11 +11,11 @@
     var rootRef = firebase.database().ref();
     var userPreferencesRef = rootRef.child('USER_PREFERENCES');
     var catalogRef = rootRef.child('CATALOG');
-    var allPreferencesRef = rootRef.child('ALL_PREFERENCES');
+    var productCategoriesRef = rootRef.child('ALL_PREFERENCES'); //TODO: Change to Product_Categories
     var allUsers = rootRef.child('USERS');
 
     return {
-      getAllPreferences: getAllPreferences,
+      getProductCategories: getProductCategories,
       getAllUsers: getAllUsers,
       getCatalog: getCatalog,
       getPreferences: getPreferences,   //TODO: getPreferences & getUserPreferences both have the same purpose. One of them has to go
@@ -38,8 +38,8 @@
       return $firebaseArray(catalogRef);
     }
 
-    function getAllPreferences () {
-      return $firebaseArray(allPreferencesRef);
+    function getProductCategories () {
+      return $firebaseArray(productCategoriesRef);
     }
 
     function getAllUsers () {

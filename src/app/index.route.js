@@ -34,7 +34,7 @@
       controller: 'CatalogController',
       controllerAs: 'vm',
       resolve: {
-        allPreferences: getAllPreferences,
+        productCategories: getProductCategories,
         catalog: getCatalog
       }
     },
@@ -51,14 +51,14 @@
       }
     },
     {
-      name: 'app.allPreferences',
-      url: '^/allpreferences',
-      templateUrl: 'app/preferences/all.preferences.html',
-      controller: 'AllPreferencesController',
+      name: 'app.productCategories',
+      url: '^/productcategories',
+      templateUrl: 'app/categories/product.categories.html',
+      controller: 'ProductCategoriesController',
       controllerAs: 'vm',
       resolve: {
         currentUser: getCurrentUser,
-        allPreferences: getAllPreferences
+        productCategories: getProductCategories
       }
     },
     {
@@ -71,12 +71,12 @@
     {
       name: 'app.userPreferences',
       url: '^/userpreferences',
-      templateUrl: 'app/preferences/user.preferences.html',
+      templateUrl: 'app/categories/user.preferences.html',
       controller: 'UserPreferencesController',
       controllerAs: 'vm',
       resolve: {
         currentUser: getCurrentUser,
-        allPreferences: getAllPreferences
+        productCategories: getProductCategories
       }
     },
     {
@@ -120,8 +120,8 @@
     }
   }
 
-  function getAllPreferences (FirebaseDataService) {
-    return FirebaseDataService.getAllPreferences().$loaded();
+  function getProductCategories (FirebaseDataService) {
+    return FirebaseDataService.getProductCategories().$loaded();
   }
 
   function getCatalog (FirebaseDataService) {

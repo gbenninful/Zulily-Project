@@ -30,26 +30,21 @@
       })
     }
 
-
     function createUserWithEmailAndPassword (email, password) {
       return auth.$createUserWithEmailAndPassword(email, password);
     }
-
 
     function getAuthenticationStateInfo () {
       return auth.$getAuth();
     }
 
-
     function isUserLoggedIn () {
       return !!(auth.$getAuth());
     }
 
-
     function loginUser(email, password) {
       return auth.$signInWithEmailAndPassword(email, password);
     }
-
 
     function logoutUser() {
       return auth.$signOut()
@@ -60,7 +55,6 @@
           $log.error('Unable to logout of Zulily...: ', error);
         });
     }
-
 
     function sendPasswordResetEmail (email) {
       return auth.$sendPasswordResetEmail(email).then(function() {

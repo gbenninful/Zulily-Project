@@ -36,9 +36,9 @@
       </form>
     </div>
     <div class="small-5 small-offset-2 column all-preferences">
-      <h6 ng-if="vm.allPreferences" class="heading">List of All Preferences</h6>
+      <h6 ng-if="vm.productCategories" class="heading">List of Product Categories</h6>
       <ul>
-        <li ng-repeat="preference in vm.allPreferences">{{ preference.name }}</li>
+        <li ng-repeat="category in vm.productCategories">{{ category.name }}</li>
       </ul>
     </div>
   </div>

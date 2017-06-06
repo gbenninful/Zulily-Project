@@ -6,10 +6,10 @@
     .controller('CatalogController', CatalogController);
 
   /** @ngInject */
-  function CatalogController($log, catalog, allPreferences) {
+  function CatalogController($log, catalog, productCategories) {
     var vm = this;
     vm.catalog = catalog;
-    vm.categories = allPreferences;
+    vm.categories = productCategories;
 
 
     vm.saveCatalogItem = function saveCatalogItem () {

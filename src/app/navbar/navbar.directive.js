@@ -9,7 +9,7 @@
   function acmeNavbar() {
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/components/navbar/navbar.html',
+      templateUrl: 'app/navbar/navbar.html',
       scope: {
 
       },
@@ -42,7 +42,6 @@
       vm.isActive = function isActive (path) {
         return ($location.path() === path) ? 'active' : '';
       };
-
     }
   }
 

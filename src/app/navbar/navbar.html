@@ -7,12 +7,10 @@
 
   <section class="top-bar-right">
     <ul class="menu">
+      <li ng-class="vm.isActive('/signup')" ng-if="!vm.isLoggedIn"><a ui-sref="signUp">Sign up</a></li>
+      <li ng-class="vm.isActive('/settings')"><a ui-sref="app.settings">Settings</a></li>
       <li ng-class="vm.isActive('/login')" ng-if="!vm.isLoggedIn"><a ui-sref="login">Login</a></li>
       <li ng-class="vm.isActive('/logout')" ng-if="vm.isLoggedIn"><a ui-sref="logout">Logout</a></li>
-      <li ng-class="vm.isActive('/signup')"><a ui-sref="signUp">Sign up</a></li>
-      <li ng-class="vm.isActive('/catalog')"><a ui-sref="app.catalog">Catalog</a></li>
-      <li ng-class="vm.isActive('/allpreferences')"><a ui-sref="app.allPreferences">All Preferences</a></li>
-      <li ng-class="vm.isActive('/settings')"><a ui-sref="app.settings">Settings</a></li>
     </ul>
   </section>
 </div>
