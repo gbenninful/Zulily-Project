@@ -1,14 +1,11 @@
-<br>
-<br>
-<p3>Sign Up Form</p3>
 <div class="container">
   <div class="row">
-    <div class="small-6 column small-offset-3 login-form">
-      <form name="signUpForm" ng-submit="vm.signUpUser()" novalidate>
+    <div class="small-6 column small-offset-3">
+      <form name="signUpForm" id="login-form" ng-submit="vm.signUpUser()" novalidate>
 
         <div class="row">
           <div class="small-12 column">
-            <small><label for="name" class="left"> Your Name </label></small>
+            <small><label for="name" class="left"> Full Name </label></small>
           </div>
         </div>
         <div class="row">
@@ -25,7 +22,7 @@
         </div>
         <div class="row">
           <div class="small-10 column">
-            <input type="email" id="email" name="email" placeholder="Email" ng-model="vm.user.email"
+            <input type="email" id="email" name="email" placeholder="Email" ng-model="vm.credentials.email"
                    ng-required="vm.required">
           </div>
         </div>
@@ -37,19 +34,19 @@
         </div>
         <div class="row">
           <div class="small-10 column">
-            <input type="password" id="password" placeholder="Password" ng-model="vm.user.password"
+            <input type="password" id="password" placeholder="Password" ng-model="vm.credentials.password"
                    ng-required="vm.required">
           </div>
         </div>
 
         <div class="row">
           <div class="small-12 column">
-            <span><label for="corfirm-password" class="left"> Confirm Password </label></span>
+            <span><label for="confirm-password" class="left"> Confirm Password </label></span>
           </div>
         </div>
         <div class="row">
           <div class="small-10 column">
-            <input type="password" id="corfirm-password" placeholder="Confirm Password" ng-model="vm.user.confirmPassword"
+            <input type="password" id="confirm-password" placeholder="Confirm Password" ng-model="vm.credentials.confirmPassword"
                    ng-required="vm.required">
           </div>
         </div>

@@ -84,11 +84,7 @@
       url: '/login',
       templateUrl: 'app/authentication/login.html',
       controller: 'LoginController',
-      controllerAs: 'vm'/*,
-      resolve: {
-        allUsers: getAllUsers
-      }*/
-
+      controllerAs: 'vm'
     },
     {
       name: 'logout',
@@ -113,6 +109,7 @@
     }
   ];
 
+
   function checkForAuthenticatedUser ($log, $state, FirebaseAuthService) {
     var firebaseUser = FirebaseAuthService.getAuthenticationStateInfo();
     if (firebaseUser) {
@@ -123,28 +120,9 @@
     }
   }
 
-  function isUserPreferencesCompleted ($state, FirebaseDataService) {
-   FirebaseDataService.getUserPreferences().$loaded().then(function (response) {
-     if(_.isEmpty(response)) {
-       $state.go('app.userPreferences');
-     } else {
-       $state.go('app.home');
-     }
-   });
-  }
-
   function getAllPreferences (FirebaseDataService) {
     return FirebaseDataService.getAllPreferences().$loaded();
   }
-
-  /*function getAllUsers ($log, FirebaseDataService) {
-    FirebaseDataService.getAllUsers().$loaded().then(function (response) {
-      $log.log('All USERS...: ', response);
-      return response;
-    }).catch(function (error) {
-      $log.error('Unable to get all users... ',  error);
-    });
-  }*/
 
   function getCatalog (FirebaseDataService) {
     return FirebaseDataService.getCatalog().$loaded();
@@ -154,8 +132,21 @@
     return resolvedUser;
   }
 
-  /*function getUserPreferences (FirebaseDataService) {
-    return FirebaseDataService.getUserPreferences().$loaded();
-  }*/
+  function isUserPreferencesCompleted ($state, $firebaseObject) {
+    var firebaseUser = firebase.auth().currentUser;
+    var preferenceRef = firebase.database().ref().child("USERS").child(firebaseUser.uid);
+    var userPreference;
+    if (firebaseUser) {
+      $firebaseObject(preferenceRef).$loaded().then(function (response) {
+        userPreference = response;
+
+        if(userPreference.formCompleted) {
+          $state.go('app.home');
+        } else {
+          $state.go('app.userPreferences');
+        }
+      })
+    }
+  }
 
 })();

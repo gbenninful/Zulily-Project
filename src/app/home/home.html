@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="row">
-    <div ng-repeat="product in vm.catalog" class="small-4 column image">
+  <div class="row" id="home">
+    <div ng-repeat="product in vm.catalog" class="column small-4">
       <img ng-src="{{ product.imageUrl }}" alt="{{ product.name }}">
-      <div>{{ product.name }} {{ product.price | currency}} | {{ product.category.name }}</div>
-      <div>{{ product.caption }}</div>
+      <div>{{ product.name }} {{ product.price | currency}} | {{ product.category }}</div>
+      <small>{{ product.caption }}</small>
     </div>
   </div>
 </div>

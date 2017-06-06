@@ -8,20 +8,14 @@
   /** @ngInject */
   function UserPreferencesController ($log, $state, allPreferences, FirebaseAuthService, FirebaseDataService) {
     var vm = this;
-    vm.isLoggedIn = FirebaseAuthService.isUserLoggedIn();
+    vm.selectedPreferences = [];
+    vm.user = {};
+    vm.categories = allPreferences;
+    var userPreferences = {};
 
-    if (vm.isLoggedIn) {
-      var userPreferences = {
-        formCompleted: false
-      }
-      FirebaseDataService.getUserPreferences().$loaded().then(function(response) { //TODO: Remove this chunk. Not needed.
-        vm.preferences = response;
-        //$log.info('vm.preferences: ', vm.preferences ,_.isEmpty(vm.preferences));
-      });
+    var firebaseUser = FirebaseAuthService.getAuthenticationStateInfo();
 
-      vm.userPreferences = allPreferences;
-
-      vm.selectedPreferences = [];
+    if (firebaseUser) {
       vm.selectPreference = function (preference) {
         var selectedIndex = vm.selectedPreferences.indexOf(preference);
 
@@ -33,59 +27,51 @@
       }
 
       vm.selectAllPreferences = function () {
-        if (vm.userPreferences.length === vm.selectedPreferences.length) {
+        if (vm.categories.length === vm.selectedPreferences.length) {
 
-          vm.userPreferences.forEach(function (item) {
+          vm.categories.forEach(function (item) {
             item.isChecked = false;
           })
           vm.selectedPreferences = [];
 
         } else {
           vm.selectedPreferences = [];
-          vm.userPreferences.forEach(function (item) {
+          vm.categories.forEach(function (item) {
             item.isChecked = true;
             vm.selectedPreferences.push(item.name);
           })
         }
       }
 
-      //TODO: Refactor- vm.saveUserPreferences should only save userPreferences.
-      //TODO: It shouldn't format vm.selectedPreferences array into a userPreferences object
+        vm.saveUserPreferences = function () {
+        FirebaseDataService.getUser(firebaseUser.uid).$loaded().then(function (response) {
+          vm.user = response;
+          vm.user.formCompleted = true;
 
-      //var formatObjToArray = function formatObjToArray () {
-      //   var userPreferences = {};
-      //   if (vm.selectedPreferences.length > 0) {
-      //     vm.selectedPreferences.forEach(function (item) {
-      //       if(!userPreferences[item]) {
-      //         userPreferences[item] = true;
-      //       }
-      //     })
-      //   }
-      //  $log.log('userPreferences- Fmt: ', userPreferences);
-      //   return userPreferences;
-      // };
-
-      vm.saveUserPreferences = function () {
-
-        if (vm.selectedPreferences.length > 0) {
-          vm.selectedPreferences.forEach(function (item) {
-            if (!userPreferences[item]) {
-              userPreferences[item] = true;
-            }
-          });
-
-          if (userPreferences) {
-            userPreferences.formCompleted = true;
-            vm.preferences.$add(userPreferences);
+          if (vm.selectedPreferences.length > 0) {
+            vm.selectedPreferences.forEach(function (item) {
+              if (!userPreferences[item]) {
+                userPreferences[item] = true;
+              }
+            });
           }
-        }
-        $log.log('userPreferences: ', userPreferences);
-        $state.go('app.home');
-      }
 
+          vm.user.preferences = userPreferences;
+
+          vm.user.$save().then(function () {
+            $log.log('Saved vm.user to USERS ', vm.user);
+            $state.go('app.home');
+
+          }).catch(function (error) {
+            $log.error('Unable to save user: ', error);
+          });
+        }).catch(function (error) {
+          $log.error('Unable to get User object: ', error);
+        });
+      }
     } else {
       $log.log('Please log in to select your preferences');
     }
   }
 
-})()
+})();

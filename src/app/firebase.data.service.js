@@ -6,7 +6,7 @@
     .factory('FirebaseDataService', firebaseDataService)
 
   /** @ngInject */
-  function firebaseDataService ($firebaseArray) {
+  function firebaseDataService ($firebaseArray, $firebaseObject) {
 
     var rootRef = firebase.database().ref();
     var userPreferencesRef = rootRef.child('USER_PREFERENCES');
@@ -18,12 +18,20 @@
       getAllPreferences: getAllPreferences,
       getAllUsers: getAllUsers,
       getCatalog: getCatalog,
+      getPreferences: getPreferences,   //TODO: getPreferences & getUserPreferences both have the same purpose. One of them has to go
+      getUser: getUser,
+      getUserNode: getUserNode,
       getUserPreferences: getUserPreferences
     }
 
 
     function getUserPreferences() {
-      return $firebaseArray(userPreferencesRef);
+      return $firebaseObject(userPreferencesRef);
+    }
+
+    function getPreferences(id) {
+      var preferenceRef = userPreferencesRef.child(id);
+      return $firebaseObject(preferenceRef);
     }
 
     function getCatalog() {
@@ -36,6 +44,14 @@
 
     function getAllUsers () {
       return $firebaseArray(allUsers);
+    }
+
+    function getUser (id) {
+      return  $firebaseObject(allUsers.child(id));
+    }
+
+    function getUserNode (id) {
+      return allUsers.child(id);
     }
   }
 

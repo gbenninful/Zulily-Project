@@ -1,0 +1,26 @@
+$outline-black: black;
+$outline-blue: blue;
+$outline-green: green;
+$outline-orange: orange;
+$outline-red: red;
+
+
+.outline-black {
+  outline: 1px solid $outline-black;
+}
+
+.outline-blue {
+  outline: 1px solid $outline-blue;
+}
+
+.outline-green {
+  outline: 1px solid $outline-green;
+}
+
+.outline-orange {
+  outline: 1px solid $outline-orange;
+}
+
+.outline-red {
+  outline: 1px solid $outline-red;
+}

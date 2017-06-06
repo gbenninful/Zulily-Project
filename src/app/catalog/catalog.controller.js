@@ -11,14 +11,6 @@
     vm.catalog = catalog;
     vm.categories = allPreferences;
 
-    /*vm.categories = [
-      {name: 'Baby & Maternity', value: 'true'},
-      {name: 'Boys', value: 'true'},
-      {name: 'Girls', value: 'true'},
-      {name: 'Home', value: 'true'},
-      {name: 'Men', value: 'true'},
-      {name: 'Women', value: 'true'}
-    ];*/
 
     vm.saveCatalogItem = function saveCatalogItem () {
       if (vm.product) {

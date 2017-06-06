@@ -1,10 +1,10 @@
 .acme-navbar-text{
-  color: white;
+  color:  rgb(242, 243, 245);
 }
 
-a {
+/*a {
   color: black;
-}
+}*/
 
 h1 {
   font-size: 2em;
@@ -13,6 +13,39 @@ h1 {
 }
 
 a:hover, a:focus {
-  color: greenyellow;
+  color: rgb(50,205,50);
 }
 
+//CUSTOM STYLES
+.navbar {
+  margin-bottom: 30px;
+}
+
+.top-bar {
+  height: 70px;
+}
+
+.top-bar-title {
+  padding: 0;
+}
+
+.menu {
+  height: 60px;
+}
+
+.menu > li > a {
+  color:  rgb(242, 243, 245);
+  text-transform: uppercase;
+  line-height: 2;
+  font-size: 15px;
+  border-bottom: 5px solid transparent;
+}
+
+.menu .active > a {
+  border-bottom: 5px solid rgb(188,211,139);
+  background-color: transparent;
+}
+
+.top-bar-title.menu img {
+  height: 53px;
+}

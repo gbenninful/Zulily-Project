@@ -1,24 +1,28 @@
-<br>
-<br>
-
 <div class="container">
   <div class="row">
-    <div class="small-6 column allPreferences-form">
-      <form name="addNewPreferencesForm" ng-submit="vm.addNewPreferences()" novalidate>
+    <div class="small-5 column">
+      <form name="addNewPreferencesForm" id="all-preferences-form" ng-submit="vm.addNewPreferences()" novalidate>
 
         <div class="row">
           <div class="small-12 column">
-            <small><label for="preferences" class="left"> Add New Preference: </label></small>
-          </div>
-        </div>
-        <div class="row">
-          <div class="small-10 column">
-            <input type="text" id="preferences" name="preferences" placeholder="Add New Preference" ng-model="vm.preferences">
+            <small><label for="preferences" class="left"> Add New Preferences </label></small>
           </div>
         </div>
 
         <div class="row">
-          <div class="small-6 column">
+          <div class="small-12 column">
+            <input type="text" id="preferences" name="preferences" placeholder="Boys, Girl, Home" ng-model="vm.preferences">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 column">
+            <small class="italics">Separate multiple preferences with a comma</small>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 column">
             <input type="submit" name="saveNewPreferencesButton" class="button" value="Save New Preferences">
           </div>
         </div>
@@ -31,9 +35,11 @@
 
       </form>
     </div>
-    <div class="small-5 small-offset-1 column all-preferences">
-      <h5>List of All Preferences</h5>
-      <p ng-repeat="preference in vm.allPreferences">{{ preference.name }}</p>
+    <div class="small-5 small-offset-2 column all-preferences">
+      <h6 ng-if="vm.allPreferences" class="heading">List of All Preferences</h6>
+      <ul>
+        <li ng-repeat="preference in vm.allPreferences">{{ preference.name }}</li>
+      </ul>
     </div>
   </div>
 </div>
