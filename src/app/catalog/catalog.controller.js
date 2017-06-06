@@ -9,7 +9,9 @@
   function CatalogController($log, catalog, productCategories) {
     var vm = this;
     vm.catalog = catalog;
+    $log.log('catalog: ', catalog);
     vm.categories = productCategories;
+    $log.log('vm.categories: ', vm.categories);
 
 
     vm.saveCatalogItem = function saveCatalogItem () {

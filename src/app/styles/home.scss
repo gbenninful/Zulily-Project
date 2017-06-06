@@ -2,4 +2,18 @@
   .column:last-child:not(:first-child), .columns:last-child:not(:first-child) {
     float: left;
   }
+
+  #product-category {
+    //color: #404961;
+    color: orange;
+    font-weight: 700;
+  }
+
+  #product-name {
+    font-weight: 700;
+  }
+
+  .product-snapshot {
+    margin-bottom: 30px;
+  }
 }

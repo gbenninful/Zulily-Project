@@ -9,28 +9,21 @@
   function firebaseDataService ($firebaseArray, $firebaseObject) {
 
     var rootRef = firebase.database().ref();
-    var userPreferencesRef = rootRef.child('USER_PREFERENCES');
     var catalogRef = rootRef.child('CATALOG');
-    var productCategoriesRef = rootRef.child('ALL_PREFERENCES'); //TODO: Change to Product_Categories
+    var productCategoriesRef = rootRef.child('ALL_PREFERENCES');
     var allUsers = rootRef.child('USERS');
 
     return {
       getProductCategories: getProductCategories,
       getAllUsers: getAllUsers,
       getCatalog: getCatalog,
-      getPreferences: getPreferences,   //TODO: getPreferences & getUserPreferences both have the same purpose. One of them has to go
+      getPreferences: getPreferences,
       getUser: getUser,
-      getUserNode: getUserNode,
-      getUserPreferences: getUserPreferences
-    }
-
-
-    function getUserPreferences() {
-      return $firebaseObject(userPreferencesRef);
+      getUserNode: getUserNode
     }
 
     function getPreferences(id) {
-      var preferenceRef = userPreferencesRef.child(id);
+      var preferenceRef = productCategoriesRef.child(id);
       return $firebaseObject(preferenceRef);
     }
 

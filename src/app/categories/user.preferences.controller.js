@@ -6,11 +6,11 @@
     .controller('UserPreferencesController', UserPreferencesController)
 
   /** @ngInject */
-  function UserPreferencesController ($log, $state, allPreferences, FirebaseAuthService, FirebaseDataService) {
+  function UserPreferencesController ($log, $state, productCategories, FirebaseAuthService, FirebaseDataService) {
     var vm = this;
     vm.selectedPreferences = [];
     vm.user = {};
-    vm.categories = allPreferences;
+    vm.categories = productCategories;
     var userPreferences = {};
 
     var firebaseUser = FirebaseAuthService.getAuthenticationStateInfo();
